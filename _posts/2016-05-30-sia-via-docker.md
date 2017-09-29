@@ -7,6 +7,8 @@ comments: true
 share: true
 related: true
 date: '2016-05-30 00:00:00 -0400'
+header:
+  teaser: images/resized/2016-05-30-sia-via-docker/480/sia-running.png
 tags:
 - docker
 - sia
@@ -31,7 +33,7 @@ In this guide, I'll show you how to set up a Sia server on a NAS device using [D
 
 Many newcomers to Sia ask, "Will I make a lot of money hosting on Sia?" The honest answer is that **hosting storage on Sia is NOT lucrative**.... yet.
 
-![SiaHub screenshot]({{ base_path }}/images/2016-05-30-sia-via-docker/siahub-2percent.png){:.align-right}
+{% include image.html file="siahub-2percent.png" alt="SiaHub screenshot" max_width="380px" class="align-right" %}
 
 The storage rental market has not yet reached critical mass. [SiaHub](https://siahub.info), my favorite Sia host explorer, shows that the total storage capacity of Sia's network (as of 2017-05-25) is a whopping 1.1 petabytes. Only 2% of that capacity has been rented. With such a surplus of space, hosts can't sell their storage space unless they price it at almost zero.
 
@@ -58,8 +60,8 @@ This guide uses the latest version of each software component at the time of wri
   <figcaption>Synology DS412+ NAS device</figcaption>
 </figure>
 
-* DiskStation Manager (DSM) 6.1.1-15101 Update 2
-* Sia v.1.2.2
+* DiskStation Manager (DSM) 6.1.2-15132
+* Sia v.1.3.0
 * Docker v.1.11.2
 
 Though this guide is written specifically for the Synology DSM system, the steps relating to Docker should be applicable on any platform that supports Docker.
@@ -74,7 +76,7 @@ First, install Docker.
 
 Docker is one of the few Synology-published, official packages available for DSM. Find it in Package Center by searching for `docker` and clicking "Install."
 
-![Install Docker package]({{ base_path }}/images/2016-05-30-sia-via-docker/package-docker.png)
+{% include image.html file="package-docker.png" alt="Install Docker package" %}
 
 ## Create Sia directory
 
@@ -82,7 +84,7 @@ Next, create a dedicated Shared Folder for Sia. This is the folder where Sia wil
 
 From File Station, create a new Shared Folder and name it "sia":
 
-![Create new shared folder]({{ base_path }}/images/2016-05-30-sia-via-docker/new-shared-folder.png)
+{% include image.html file="new-shared-folder.png" alt="Create new shared folder" max_width="547px" %}
 
 ## Enable SSH access to DiskStation
 
@@ -90,7 +92,7 @@ There are no pre-packaged Docker images for Sia, so you'll create a `Dockerfile`
 
 To enable this functionality, open Control Panel > Terminal & SNMP and check the box next to "Enable SSH service."
 
-![Install Docker package]({{ base_path }}/images/2016-05-30-sia-via-docker/enable-ssh.png)
+{% include image.html file="enable-ssh.png" alt="Install Docker package" %}
 
 # Creating the Docker image
 
@@ -114,17 +116,16 @@ admin@DiskStation:/tmp/$
 Using the following command, download the Sia `Dockerfile` I created:
 
 ```bash
-wget \
-  https://gist.githubusercontent.com/mtlynch/54d71bff4c33270c1cd6c0ddf0218558/raw/ed7c64ae3eeb623f4e4e1159e1e683722abd82c1/Dockerfile
+wget {{ site.url }}/files/sia-via-docker/Dockerfile
 ```
 
 The `Dockerfile` contents are listed below:
 
-{% gist mtlynch/54d71bff4c33270c1cd6c0ddf0218558 %}
+{% include files.html title="Dockerfile" %}
 
 This `Dockerfile` does a few things:
 
-* Downloads Sia v.1.2.2, the latest stable release as of this writing, and installs it to the `/opt/sia` directory.
+* Downloads Sia v.1.3.0, the latest stable release as of this writing, and installs it to the `/opt/sia` directory.
 * Configures the image to run `siad`, the Sia daemon process, when the container launches.
 * Uses `socat` to forward the container's external port 8000 to the container's localhost:9980 port (the `siad` API port). Otherwise, no `siac` client outside the container could execute commands against the container's `siad` server.
 * Instructs `siad` to use `/mnt/sia` as its folder for Sia state information. In the next step, you'll link `/mnt/sia` to the Synology Shared Folder "sia" created earlier so that the files `siad` generates are visible on the NAS.
@@ -162,11 +163,11 @@ The previous commands do the following:
 
 From DSM, open the Docker app and view the "Container" panel. You should see something similar to the following:
 
-![Sia container running]({{ base_path }}/images/2016-05-30-sia-via-docker/sia-running.png)
+{% include image.html file="sia-running.png" alt="Sia container running" %}
 
 If you open the "sia" Shared Folder we created earlier, you'll see that `siad` has created several folders:
 
-![Sia generated folders]({{ base_path }}/images/2016-05-30-sia-via-docker/sia-folder-populated.png)
+{% include image.html file="sia-folder-populated.png" alt="Sia generated folders" %}
 
 # Configuring Sia
 
@@ -193,7 +194,7 @@ Target: [0 0 0 0 12 204 204 204 204 204 204 204 204 204 204 204 204 204 204 204 
 
 To create storage space to sell to other Sia users, create a dedicated subdirectory called `host-storage` in your "sia" shared folder:
 
-![Sia storage folder]({{ base_path }}/images/2016-05-30-sia-via-docker/create-storage-folder.png)
+{% include image.html file="create-storage-folder.png" alt="Sia storage folder" %}
 
 Then, use `siac` to add that folder as a new Sia host storage folder:
 
@@ -209,7 +210,7 @@ Sia needs to communicate with remote peers over ports `9981` and `9982`. When us
 
 *Note: Replace `10.0.0.101` with the IP address of your Synology NAS.*
 
-![Firewall settings]({{ base_path }}/images/2016-05-30-sia-via-docker/firewall.png)
+{% include image.html file="firewall.png" alt="Firewall settings" %}
 
 You should **not** expose port `9980` because that is Sia's port for API communications. Exposing it to the public Internet would leave your Sia host vulnerable to compromise.
 
@@ -288,4 +289,4 @@ If you're interested in getting started, check out my other guide, "[A Beginnerâ
 * 2017-05-07: Updated instructions for the Sia 1.2.1 release.
 * 2017-05-23: Updated instructions for the Sia 1.2.2 release.
 * 2017-05-25: Revised a lot of the text, added instructions for version-to-version upgrades.
-
+* 2017-07-25: Updated instructions for the Sia 1.3.0 release.

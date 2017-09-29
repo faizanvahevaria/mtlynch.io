@@ -7,10 +7,13 @@ comments: true
 share: true
 related: true
 date: '2017-05-20 00:00:00'
+header:
+  related: images/resized/2017-05-20-windows-sia-mining/480/siamining-pool.png
 tags:
 - siacoin
 - cryptocurrency
 - mining
+- sia
 excerpt: A step-by-step guide from zero to mining automation
 ---
 
@@ -61,13 +64,14 @@ Siacoin mining uses your computer's graphics card (which I'll refer to as "GPU" 
 Different GPUs require different software, so follow the steps below to determine your GPU type:
 
 1. Hit Win+R to open the run dialog.
-1. Type `devmgmt.msc` and hit Enter.<br>
-  ![Run devicemgr]({{ base_path }}/images/2017-05-20-windows-sia-mining/run-window-devicemgr.png)
+1. Type `devmgmt.msc` and hit Enter.
+  {% include image.html file="run-window-devicemgr.png" alt="Run devicemgr" max_width="399px" %}
+{:start="3"}
 1. Expand the "Display adapters" entry
 
 You should see something like the following:
 
-![Device Manager: Display adapters]({{ base_path }}/images/2017-05-20-windows-sia-mining/device-manager.png)
+{% include image.html file="device-manager.png" alt="Device Manager&#58; Display adapters" %}
 
 Note whether your GPU begins with "NVIDIA" or "AMD."
 
@@ -101,17 +105,19 @@ If you have an AMD GPU, you'll need OpenCL. It may be installed already, as it i
 
 # Install a Siacoin miner
 
-There are a few different Siacoin miners to choose from, but they all offer similar features and performance. This guide uses the Marlin miner because it is compatible with both CUDA and OpenCL, but you might want to check out [other mining options](https://www.reddit.com/r/siacoin/wiki/mining).
+There are a few different Siacoin miners to choose from, but they all offer similar features and performance. This guide uses the Marlin miner because it is compatible with both CUDA and OpenCL, but you might want to check out [other mining options](https://siawiki.tech/mining/software).
 
 To install Marlin, follow the steps below:
 
-1. Go to the [Marlin miner](https://siamine.com/marlin) download page.
+1. Go to the [Marlin miner](https://github.com/SiaMining/marlin/releases/latest) download page.
 1. Click the link for "Windows (64-bit)" to download the Marlin package.
 1. When the download completes, open it and unzip to `C:\marlin`
-  ![Extract Marlin]({{ base_path }}/images/2017-05-20-windows-sia-mining/extract-to.png)
+  {% include image.html file="extract-to.png" alt="Extract Marlin" max_width="614px" %}
+{:start="4"}
 1. Hit Win+R to open the Windows run dialog.
-1. Type `cmd` and hit Enter.<br>
-  ![Run cmd]({{ base_path }}/images/2017-05-20-windows-sia-mining/cmd.png)
+1. Type `cmd` and hit Enter.
+  {% include image.html file="cmd.png" alt="Run cmd" max_width="399px" %}
+{:start="6"}
 1. In the Command Prompt, type the following:
 
     ```
@@ -162,14 +168,14 @@ To create a wallet with Poloniex, follow the steps below:
 1. Go to [Poloniex](https://www.poloniex.com/).
 1. Create a new account and log in.
 1. From the upper right menu, click Balances > Deposits & Withdrawals.
-  ![Poloniex balances button]({{ base_path }}/images/2017-05-20-windows-sia-mining/poloniex-balances.png)
+  {% include image.html file="poloniex-balances.png" alt="Poloniex balances button" %}
+{:start="4"}
 1. Find "**SC** - Siacoin" in the list of cryptocurrencies and click the "Deposit" link on that row
-
-  ![Poloniex deposit button]({{ base_path }}/images/2017-05-20-windows-sia-mining/siacoin-deposit.png)
+  {% include image.html file="siacoin-deposit.png" alt="Poloniex deposit button" %}
 
 You will see a long series of letters and numbers. This is your Siacoin wallet address.
 
-![Poloniex deposit address]({{ base_path }}/images/2017-05-20-windows-sia-mining/poloniex-address.png)
+{% include image.html file="poloniex-address.png" alt="Poloniex deposit address" %}
 
 Save this address and proceed to the [Start mining](#start-mining) step.
 
@@ -184,30 +190,35 @@ Sia-UI is Sia's official Windows app. Developed and maintained by the Sia develo
 1. Go to the [Sia-UI download page](https://github.com/NebulousLabs/Sia-UI/releases/latest)
 1. Click the link ending in `-win32-x64.zip` (e.g. `Sia-UI-vXX.YY.ZZ-win32-x64.zip`)
 1. Extract the downloaded file to `C:\Sia-UI`
-  ![Extract Sia-UI]({{ base_path }}/images/2017-05-20-windows-sia-mining/extract-sia-ui.png)
+  {% include image.html file="extract-sia-ui.png" alt="Extract Sia-UI" max_width="616px" %}
+{:start="4"}
 1. Click "Sia-UI" in the extracted files.
-  ![image]({{ base_path }}/images/2017-05-20-windows-sia-mining/explorer-sia-ui.png)
+  {% include image.html file="explorer-sia-ui.png" alt="image" max_width="" %}
+{: start="5"}
 1. A Windows Firewall dialog will appear asking if you want to give Sia access. Click "Allow".
-  ![image]({{ base_path }}/images/2017-05-20-windows-sia-mining/sia-allow-access.png)
+  {% include image.html file="sia-allow-access.png" alt="image" max_width="531px" %}
 
 ### Set up Sia-UI wallet
 
 You'll see a progress bar in the upper right corner that represents Sia-UI's progress synchronizing your app with the rest of the Sia network. While you wait for synchronization to reach 100%,  create your Siacoin wallet with the steps below:
 
 1. In the lefthand sidebar, click the "Wallet" button.
-  ![image]({{ base_path }}/images/2017-05-20-windows-sia-mining/sia-ui-wallet.png)
+  {% include image.html file="sia-ui-wallet.png" alt="image" %}
+{:start="2"}
 1. Click "Create a new wallet."
-  ![Sia-UI create wallet]({{ base_path }}/images/2017-05-20-windows-sia-mining/sia-ui-create-wallet.png)
+  {% include image.html file="sia-ui-create-wallet.png" alt="Sia-UI create wallet" %}
+{:start="3"}
 1. Sia-UI then displays your wallet seed. This is a series of words that gives you access to your Siacoin wallet.
   * **Save your wallet seed**. Either write it down on paper or save it to a text file.
   * Sia offers to let you choose a wallet *password* that is distinct from your wallet *seed*. For simplicity, leave the password as is so that it will match your seed.
   * **Important**: You'll need your wallet seed to access your wallet every time you start Sia-UI. If you lose your wallet seed, you can never recover the money inside your wallet.
   * **Important**: Anyone who has your wallet seed controls your Siacoin balance. Never post your wallet seed online (unless you're writing a Siacoin mining tutorial).
 
-  ![Sia-UI seed]({{ base_path }}/images/2017-05-20-windows-sia-mining/sia-seed.png)
+  {% include image.html file="sia-seed.png" alt="Sia-UI seed" %}
+{:start="4"}
 1. Click the button that says "I have written these down in a safe place."
 1. Because Sia-UI maintains a healthy skepticism of its users, the next screen challenges you to enter the wallet seed you just saved. Type in the seed you saved in step 3 and click "Unlock."
-  ![Sia-UI enter seed]({{ base_path }}/images/2017-05-20-windows-sia-mining/sia-unlock.png)
+  {% include image.html file="sia-unlock.png" alt="Sia-UI enter seed" %}
 
 At this point, Sia-UI will likely still be synchronizing with the rest of the network. Unfortunately, you can't use your wallet until this process completes.
 
@@ -215,11 +226,11 @@ First-time synchronization is *sloooooow*. It can take hours to days to get sync
 
 When you're finally synchronized, click the "Receive Siacoin" button in the wallet screen:
 
-  ![Sia-UI receive siacoin]({{ base_path }}/images/2017-05-20-windows-sia-mining/sia-ui-receive-siacoin.png)
+  {% include image.html file="sia-ui-receive-siacoin.png" alt="Sia-UI receive siacoin" %}
 
 You will see a long series of letters and numbers. This is your Siacoin wallet address.
 
-![Sia-UI address]({{ base_path }}/images/2017-05-20-windows-sia-mining/sia-ui-address.png)
+{% include image.html file="sia-ui-address.png" alt="Sia-UI address" %}
 
 Save this address and proceed to the [Start mining](#start-mining) step.
 
@@ -232,13 +243,15 @@ You're ready to start mining! To begin, follow the steps below:
 1. Open Notepad
 1. Go to File > Open and enter `C:\marlin\marlin.bat`
 1. Under "Your Payout Address" change the address to your own Siacoin wallet address.
-  ![Marlin batch file]({{ base_path }}/images/2017-05-20-windows-sia-mining/marlin-bat.png)
+  {% include image.html file="marlin-bat.png" alt="Marlin batch file" %}
+{:start="4"}
 1. Go to File > Save and close Notepad.
 1. Go to `C:\marlin` in Windows Explorer.
 1. Double-click on `marlin.bat`.
-  ![Marling in Explorer]({{ base_path }}/images/2017-05-20-windows-sia-mining/explorer-marlin.png)
+  {% include image.html file="explorer-marlin.png" alt="Marlin in Explorer" max_width="604px" %}
+{:start="7"}
 1. If you get a security warning, click "Run."
-  ![Marlin warning]({{ base_path }}/images/2017-05-20-windows-sia-mining/marlin-warning.png)
+  {% include image.html file="marlin-warning.png" alt="Marlin warning" max_width="466px" %}
 
 You're mining! You should see output like the following:
 
@@ -282,8 +295,9 @@ Configuring a scheduled task is a bit tedious. To save you the trouble, I've cre
 
 1. Download my Sia Mining Task configuration file: [SiaMiningTask.xml]({{ base_path }}/files/SiaMiningTask.xml) (right-click and hit "Save link as...").
 1. Hit Win+R to open the Windows run dialog.
-1. Type `control schedtasks` and hit Enter.<br>
-  ![Run Task Scheduler]({{ base_path }}/images/2017-05-20-windows-sia-mining/run-schedtasks.png)
+1. Type `control schedtasks` and hit Enter.
+  {% include image.html file="run-schedtasks.png" alt="Run Task Scheduler" max_width="399px" %}
+{:start="4"}
 1. Task Scheduler will appear. From the right hand menu, click "Import Task..."
 1. Specify the `SiaMiningTask.xml` file you downloaded in step 1.
 
@@ -301,9 +315,9 @@ The SiaMining pool provides a dashboard that allows you to monitor your miner's 
 
 * `https://siamining.com/addresses/[your siacoin address]`
 
-[![SiaMining screenshot]({{ base_path }}/images/2017-05-20-windows-sia-mining/siamining-pool.png)]({{ base_path }}/images/2017-05-20-windows-sia-mining/siamining-pool.png)
+{% include image.html file="siamining-pool.png" alt="SiaMining screenshot" img_link="true" %}
 
-When the unpaid balance for your wallet address reaches 1,000 Siacoin, the pool pays out your rewards. Within six hours, you will see a deposit in your wallet for a little over 1,000 Siacoin.
+When the unpaid balance for your wallet address reaches 500 Siacoin, the pool pays out your rewards. Within six hours, you will see a deposit in your wallet for a little over 500 Siacoin.
 
 My particular GPU reaches the payout threshold about once per week. Your experience will vary depending on the performance of your GPU, the percentage of time your miner is running, and the number of other active Siacoin miners.
 
@@ -377,6 +391,8 @@ I do **not** recommend buying a GPU for the express purpose of mining Siacoin. Y
 
 If you're buying a new GPU anyway, and you're interested in Siacoin mining performance as a factor in your decision, the tables above can help you decide.
 
+**Update (2017-06-30)**: On June 23rd, 2017, Sia [announced](https://www.reddit.com/r/siacoin/comments/6j1gyg/obelisks_sia_asics_full_details/) an upcoming Siacoin ASIC miner called the [Obelisk](https://obelisk.tech/), expected to produce 100 times the hash rate of a GPU. The Obelisk is targeting a ship date between March and June 2018. When Obelisk customers begin using their devices, GPU mining for Siacoin will become unprofitable. If you plan to invest in GPU hardware, keep in mind that your Siacoin mining revenues will end soon after the Obelisk ships.
+
 # Caveats
 
 Here are a few things to keep in mind as you begin Siacoin mining:
@@ -389,10 +405,43 @@ Here are a few things to keep in mind as you begin Siacoin mining:
 
 Another way of earning Siacoin is by renting out your unused hard disk space. The Siacoin hosting economy hasn't  reached critical mass yet, and hosting is suited for more advanced users, but if you're interested, I wrote a [Guide to Hosting Sia on a Synology NAS]({{ base_path }}/sia-via-docker/).
 
-# Donation
+# Troubleshooting
 
-If this guide was useful for you, and you'd like to support the blog, here are my donation addresses:
+Having trouble getting up and running? Here are some common issues readers have run into and how to fix them.
 
-* Siacoin: `b6e65384b896fc4b9f8a69c816422f188a418de48ec3dff2d25df7c01a16a66555cbf9d611f8`
-* Bitcoin: `12HLGffayPcBqXCC5iQHwX4f5YGjimbHT9`
+## Miner crashes immediately
 
+**Symptoms**: When you run `marlin.bat` a command window pops up and immediately closes.
+
+This usually happens because the mining settings are too intense for your GPU. To fix this, follow the steps below
+
+1. Open Notepad
+1. Go to File > Open and enter `C:\marlin\marlin.bat`
+1. Under "Your Payout Address" change the address to your own Siacoin wallet address.
+  {% include image.html file="lower-intensity.png" alt="Marlin batch file" %}
+{:start="4"}
+1. Go to File > Save and close Notepad.
+1. Try running `marlin.bat` again.
+
+If it succeeds, repeat these steps with increasing intensity until you find the highest intensity that is still stable.
+
+If it fails after you've lowered the intensity, try the following:
+
+1. Hit Win+R to open the Windows run dialog.
+1. Type `cmd` and hit Enter.
+  {% include image.html file="cmd.png" alt="Run cmd" max_width="399px" %}
+{:start="3"}
+1. In the Command Prompt, type the following:
+
+    ```
+cd C:\marlin
+marlin.bat
+    ```
+
+This won't fix the issue, but the window will stay open so that you can see the error message Marlin is producing before it crashes.
+
+## Miner shows 0 MH/s
+
+**Symptoms**: The Marlin miner runs, but shows a hash rate of 0 MH/s.
+
+This can happen if the mining settings are too intense for your GPU. To fix this, follow the same steps for [Miner crashes immediately](#miner-crashes-immediately).

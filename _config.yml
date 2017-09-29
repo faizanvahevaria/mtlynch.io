@@ -8,6 +8,12 @@ collections:
   uploads:
     title: Uploads
     output: true
+  files:
+    output: true
+    permalink: /:collection/:path:output_ext
+  ymls:
+    output: true
+    permalink: /files/:path.yml
 defaults:
 - scope:
     path: ''
@@ -19,26 +25,30 @@ defaults:
     comments: true
     share: true
     related: true
+    sidebar:
+       nav: "main"
 - scope:
     path: ''
     type: pages
   values:
     layout: single
     author_profile: true
+    sidebar:
+       nav: "main"
 locale: en-US
 title_separator: "-"
 name: Michael Lynch
 description: An amazing website.
-url: https://mtlynch.io
+url:
 theme: minimal-mistakes-jekyll
 baseurl: 
 repository: 
 teaser: 
 words_per_minute: 200
 comments:
-  provider: disqus
+  provider:
   disqus:
-    shortname: silly-bits
+    shortname:
   discourse:
     server: 
   facebook:
@@ -75,7 +85,7 @@ bing_site_verification:
 alexa_site_verification: 
 yandex_site_verification: 
 twitter:
-  username: 
+  username: deliberatecoder
 facebook:
   username: 
   app_id: 
@@ -86,9 +96,9 @@ social:
   name: 
   links: 
 analytics:
-  provider: google-universal
+  provider:
   google:
-    tracking_id: UA-78473158-1
+    tracking_id:
 author:
   name: Michael Lynch
   avatar: images/bio-photo.jpg
@@ -113,7 +123,7 @@ author:
   stackoverflow: 
   steam: 
   tumblr:
-  twitter: 
+  twitter: deliberatecoder
   vine: 
   weibo: 
   xing: 
@@ -171,18 +181,18 @@ permalink: "/:categories/:title/"
 paginate: 5
 paginate_path: "/page:num/"
 future: true
-gems:
+plugins:
 - jekyll-paginate
 - jekyll-sitemap
-- jekyll-gist
 - jekyll-feed
 - jemoji
+- jekyll-responsive-image
 whitelist:
 - jekyll-paginate
 - jekyll-sitemap
-- jekyll-gist
 - jekyll-feed
 - jemoji
+- jekyll-responsive-image
 category_archive:
   type: liquid
   path: "/categories/"
@@ -193,3 +203,28 @@ compress_html:
   clippings: all
   ignore:
     envs: development
+# jekyll-responsive-image configurations
+responsive_image:
+  template: _includes/responsive-image.html
+  default_quality: 90
+  sizes:
+    - width: 320
+    - width: 480
+    - width: 768
+    - width: 1024
+  base_path: images
+  output_path_format: images/resized/%{dirname}/%{width}/%{basename}
+  save_to_source: false
+media_renditions:
+  article:
+    sizes:
+      - "(min-width: 64em) 83vw" 
+      - "100vw"
+  half:
+    sizes:
+      - "(min-width: 64em) calc(50% - 0.5em)vw" 
+      - "100vw"
+  third:
+    sizes:
+      - "(min-width: 64em) calc(33.3333% - 0.5em)"
+      - "100vw"

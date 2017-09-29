@@ -1,10 +1,3 @@
 # Config overrides for development.
-url                      : http://localhost:4000
-analytics:
-  provider: google-universal
-  google:
-    tracking_id:
-comments:
-  provider: disqus
-  disqus:
-    shortname:
+url: http://localhost:4000
+

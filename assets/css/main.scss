@@ -6,8 +6,4 @@
 
 @import "minimal-mistakes";
 
-.page__content {
-  p, li {
-    font-size: 0.9em;
-  }
-}
+@import "child-theme/main";

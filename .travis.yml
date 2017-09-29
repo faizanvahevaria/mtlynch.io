@@ -7,11 +7,15 @@ env:
     - NOKOGIRI_USE_SYSTEM_LIBRARIES=true # speeds up installation of html-proofer
 before_install:
   - nvm install 7.10.0
+  - npm install
+  - npm run build:js
+  # Remove Jekyll Admin from Travis builds.
+  - sed -i '/jekyll-admin/d' Gemfile
 script:
   - ./_tests/build
 before_deploy:
   # Build production site.
-  - BUNDLE_GEMFILE=Gemfile bundle exec jekyll build
+  - BUNDLE_GEMFILE=Gemfile bundle exec jekyll build --config _config.yml,_config_prod.yml
 deploy:
   provider: firebase
   token:
